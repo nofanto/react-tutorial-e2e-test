@@ -25,7 +25,7 @@ class Profiling extends Helper {
     const page = this.helpers['Puppeteer'].page;
     //start profiler
     await page.tracing.start({
-      path: `output/profile-${new Date().getTime()}.json.json`
+      path: `output/profile-${new Date().getTime()}.json`
     });
   }
 

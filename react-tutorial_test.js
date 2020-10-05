@@ -1,22 +1,43 @@
 Feature('Add Person');
 
-Scenario('Add john doe the janitor to the list', async (I) => {
+Scenario('Add 4 person to the list', async (I) => {
+
+    function addPerson(name, job) {
+        I.typeInField('#name', name);
+        I.typeInField('#job', job);
+        I.pressKey('Enter');
+        I.wait(1);
+    }
+
+    function deletePerson() {
+        I.click('Delete');
+        I.wait(1);
+    }
+
     I.amOnPage('/');
-    await I.startProfiling();
     
-    I.see('React Tutorial');
+    I.waitForText('React Tutorial');
 
-    I.dontSee('john doe');
-    I.dontSee('janitor');
+    await I.startProfiling();
 
-    I.fillField('name', 'john doe');
-    I.fillField('job', 'janitor');
+    addPerson('john doe','janitor');
+    addPerson('janet doe', 'cook');
+    addPerson('amanda doe', 'cook');
+    addPerson('grace doe', 'cook');
+    addPerson('jordan doe', 'waiter');
+    addPerson('karen doe', 'waiter');
+    addPerson('jason doe', 'waiter');
 
-    I.click('Submit');
+    deletePerson();
 
-    I.see('john doe', 'table');
-    I.see('janitor', 'table');
+    addPerson('gareth doe', 'janitor');
+    addPerson('samantha doe', 'cashier');
 
+    deletePerson();
+
+    addPerson('lorry doe', 'cashier');
+    addPerson('isabel doe', 'waiter');
+    addPerson('debbie doe', 'cashier');
 
     await I.stopProfiling();
 });
